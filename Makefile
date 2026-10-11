@@ -1,8 +1,8 @@
 # Commands
 #
 #   make                         Compile and run hello_world.
-#   make dir=<folder>            Compile and run <folder>/<folder>.cpp.
-#   make dir=<folder> SRC=<file> Compile and run one specific source file.
+#   make execute=<folder>            Compile and run <folder>/<folder>.cpp.
+#   make execute=<folder> SRC=<file> Compile and run one specific source file.
 #   make create=<name>           Create <name>/<name>.cpp from template.cpp.
 #   make clean                   Delete every a.out binary.
 #
@@ -11,7 +11,7 @@
 
 CXX      ?= c++
 CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra
-dir      ?= hello_world
+execute  ?= hello_world
 
 .PHONY: run create-exercise clean
 
@@ -24,7 +24,7 @@ endif
 # Compile the folder's source to <folder>/a.out, then run it.
 run:
 	@set -e; \
-	folder="$(dir)"; \
+	folder="$(execute)"; \
 	if [ -n "$(SRC)" ]; then \
 		src="$(SRC)"; \
 	elif [ -f "$$folder/$$(basename "$$folder").cpp" ]; then \
